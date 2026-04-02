@@ -134,14 +134,15 @@ npm run dev
 - No database migrations (Alembic)
 - No caching
 
-## Documentation
+## 📄 Project Documentation
 
-Additional documentation available in the `Docs/` folder:
+Comprehensive documentation is available in the `Docs/` directory:
 
-- `VERSION_1_REPORT.md` - Comprehensive project documentation
-- `TESTING_GUIDE.md` - Step-by-step testing instructions
-- `ASSIGNMENT_EVALUATION.md` - Requirements mapping and evaluation
-- `RENDER_DEPLOYMENT.md` - Deploy to Render cloud platform
+- [**Technical Decisions & Trade-offs**](Docs/TECHNICAL_DECISIONS.md): Architectural choices, rationale, and backend-focused summary.
+- [**Assignment Evaluation Report**](Docs/ASSIGNMENT_EVALUATION.md): Direct mapping of project requirements to the implemented codebase.
+- [**Full Version 1.0 Report**](Docs/VERSION_1_REPORT.md): Detailed technical breakdown of both Backend and Frontend.
+- [**Testing Guide**](Docs/TESTING_GUIDE.md): Step-by-step instructions for running the test suite and manual verification.
+- [**Render Deployment Guide**](Docs/RENDER_DEPLOYMENT.md): Detailed workflow for deploying the system to the Render cloud platform.
 
 ## Deployment
 
