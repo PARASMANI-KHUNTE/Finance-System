@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Outlet, NavLink } from 'react-router-dom';
+import { Outlet, NavLink, useNavigate } from 'react-router-dom';
 import { 
   LayoutDashboard, 
   History, 
   PieChart, 
-  LogOut, 
   ShieldCheck,
   Menu,
   Sun,
-  Moon
+  Moon,
+  ArrowLeft
 } from 'lucide-react';
 import { useAuth, type Role } from '../context/AuthContext';
 import { useTheme } from '../context/ThemeContext';
@@ -24,16 +24,17 @@ const Layout: React.FC = () => {
   const { role, setRole } = useAuth();
   const { theme, toggleTheme } = useTheme();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const navigate = useNavigate();
 
   const navItems = [
-    { label: 'Dashboard', icon: LayoutDashboard, path: '/' },
-    { label: 'Transactions', icon: History, path: '/history' },
-    { label: 'Analytics', icon: PieChart, path: '/analytics' },
+    { label: 'Dashboard', icon: LayoutDashboard, path: '/dashboard' },
+    { label: 'Transactions', icon: History, path: '/dashboard/history' },
+    { label: 'Analytics', icon: PieChart, path: '/dashboard/analytics' },
   ];
 
   const sidebarContent = (
     <>
-      <div className="flex items-center gap-3 px-6 py-8">
+      <div className="flex items-center gap-3 px-6 py-8 border-b border-slate-100 dark:border-slate-800/50 mb-4">
         <div className="w-10 h-10 bg-amber-500/10 dark:bg-amber-500/20 text-amber-500 flex items-center justify-center rounded-xl shadow-inner">
           <ShieldCheck size={24} className="drop-shadow-md" />
         </div>
@@ -43,11 +44,12 @@ const Layout: React.FC = () => {
         </div>
       </div>
 
-      <nav className="flex-1 px-4 space-y-2 mt-4">
+      <nav className="flex-1 px-4 space-y-2">
         {navItems.map((item) => (
           <NavLink
             key={item.path}
             to={item.path}
+            end={item.path === '/dashboard'}
             onClick={() => setMobileOpen(false)}
             className={({ isActive }) => cn(
               "flex items-center gap-3 px-4 py-3.5 rounded-xl text-sm font-semibold transition-all group",
@@ -67,7 +69,7 @@ const Layout: React.FC = () => {
       {/* Utilities Base */}
       <div className="p-4 border-t border-slate-200 dark:border-slate-800 space-y-4">
         {/* Role Simulator */}
-        <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4 border border-slate-200 dark:border-slate-800/50">
+        <div className="bg-slate-50 dark:bg-slate-900/50 rounded-2xl p-4 border border-slate-200 dark:border-slate-800/50 shadow-inner">
           <p className="text-[10px] uppercase tracking-widest text-slate-500 dark:text-slate-500 font-bold mb-3 pl-1">Simulate Role</p>
           <div className="flex bg-slate-200 dark:bg-slate-950 p-1 rounded-xl">
             {(['admin', 'analyst', 'viewer'] as Role[]).map((r) => (
@@ -91,14 +93,18 @@ const Layout: React.FC = () => {
         <div className="flex items-center gap-2">
           <button 
             onClick={toggleTheme}
-            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all"
+            className="flex-1 flex items-center justify-center gap-2 px-4 py-3 rounded-xl text-sm font-semibold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800/50 hover:text-slate-900 dark:hover:text-white transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-700"
           >
             {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
             <span>Theme</span>
           </button>
           
-          <button className="flex items-center justify-center p-3 rounded-xl text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all">
-            <LogOut size={18} />
+          <button 
+            onClick={() => navigate('/')}
+            className="flex items-center justify-center p-3 rounded-xl text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-500/10 transition-all border border-transparent hover:border-rose-200 dark:hover:border-rose-500/20"
+            title="Return to Landing"
+          >
+            <ArrowLeft size={18} />
           </button>
         </div>
       </div>
@@ -106,7 +112,7 @@ const Layout: React.FC = () => {
   );
 
   return (
-    <div className="flex h-screen bg-slate-50 dark:bg-[#020617] transition-colors duration-300">
+    <div className="flex h-screen bg-slate-50 dark:bg-[#020617] transition-colors duration-300 scroll-smooth">
       
       {/* Mobile Top Nav */}
       <div className="lg:hidden fixed top-0 left-0 right-0 h-16 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 z-40 flex items-center justify-between px-4">
@@ -149,12 +155,12 @@ const Layout: React.FC = () => {
       </AnimatePresence>
 
       {/* Desktop Sidebar */}
-      <div className="hidden lg:flex w-72 bg-white dark:bg-[#0A0F1C] border-r border-slate-200 dark:border-slate-800 flex-col shadow-xl z-10 transition-colors duration-300">
+      <div className="hidden lg:flex w-72 bg-white dark:bg-[#0A0F1C] border-r border-slate-200 dark:border-slate-800 flex-col shadow-xl z-20 transition-colors duration-300">
         {sidebarContent}
       </div>
 
       {/* Main Content Area */}
-      <main className="flex-1 overflow-y-auto pt-20 lg:pt-0">
+      <main className="flex-1 overflow-y-auto pt-20 lg:pt-0 scrollbar-hide">
         <div className="max-w-6xl mx-auto p-6 md:p-10">
           <Outlet />
         </div>

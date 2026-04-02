@@ -127,7 +127,7 @@ const Dashboard: React.FC = () => {
               <h2 className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Recent Transactions</h2>
             </div>
             <button 
-              onClick={() => navigate('/history')}
+              onClick={() => navigate('/dashboard/history')}
               className="text-sm text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300 font-medium px-4 py-2 hover:bg-amber-50 dark:hover:bg-amber-500/5 rounded-lg transition-all"
             >
               View All
