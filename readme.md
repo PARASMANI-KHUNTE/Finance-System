@@ -16,6 +16,7 @@ Finance System/
 │   │   ├── schemas/      # Pydantic schemas
 │   │   ├── services/     # Business logic
 │   │   └── utils/        # Helper functions
+│   ├── migrations/       # Database migration scripts
 │   ├── tests/            # pytest test suite
 │   └── requirements.txt
 ├── Frontend/             # React + Vite frontend
@@ -92,7 +93,8 @@ npm run dev
 ### Backend
 - FastAPI 0.110.0
 - SQLAlchemy 2.0.28
-- SQLite
+- SQLite / PostgreSQL (dual support)
+- psycopg2-binary
 - Pydantic v2
 - pytest
 
@@ -135,6 +137,11 @@ Additional documentation available in the `Docs/` folder:
 - `VERSION_1_REPORT.md` - Comprehensive project documentation
 - `TESTING_GUIDE.md` - Step-by-step testing instructions
 - `ASSIGNMENT_EVALUATION.md` - Requirements mapping and evaluation
+- `RENDER_DEPLOYMENT.md` - Deploy to Render cloud platform
+
+## Deployment
+
+See [RENDER_DEPLOYMENT.md](Docs/RENDER_DEPLOYMENT.md) for step-by-step instructions to deploy both backend and frontend to Render.
 
 ## Future Improvements
 

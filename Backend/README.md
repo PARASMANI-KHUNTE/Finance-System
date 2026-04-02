@@ -10,12 +10,36 @@ This application acts as the backend service for a finance tracker. It provides 
 
 - **Framework:** FastAPI
 - **ORM:** SQLAlchemy (2.0 style, synchronous)
-- **Database:** SQLite
+- **Database:** SQLite (local) / PostgreSQL (production)
+- **Database Driver:** psycopg2-binary
 - **Validation:** Pydantic v2
 - **Server:** Uvicorn
 - **Testing:** pytest
 - **Config:** pydantic-settings
 - **CORS:** Enabled for frontend integration
+
+## Database Configuration
+
+The backend supports both SQLite (for local development) and PostgreSQL (for production).
+
+### Local Development (SQLite)
+```bash
+# Default - no configuration needed
+uvicorn app.main:app --reload
+```
+
+### Production (PostgreSQL)
+Set the `DATABASE_URL` environment variable:
+```bash
+export DATABASE_URL="postgresql://user:password@host:5432/dbname"
+```
+
+### Migrating Data
+Use the migration script to transfer data from SQLite to PostgreSQL:
+```bash
+pip install psycopg2-binary
+python -m migrations.migrate_sqlite_to_pg
+```
 
 ## Architecture
 

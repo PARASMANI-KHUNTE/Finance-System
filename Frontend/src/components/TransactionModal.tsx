@@ -93,28 +93,33 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-4">
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            className="absolute inset-0 bg-slate-900/40 dark:bg-slate-950/80 backdrop-blur-sm"
           />
           
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className="relative w-full max-w-lg bg-slate-900 border border-slate-800 rounded-3xl p-8 shadow-2xl"
+            initial={{ opacity: 0, y: '100%', scale: 1 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: '100%', scale: 1 }}
+            transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
+            className="relative w-full max-w-lg bg-white dark:bg-slate-900 border-t sm:border border-slate-200 dark:border-slate-800 rounded-t-3xl sm:rounded-3xl p-6 sm:p-8 shadow-2xl overflow-y-auto max-h-[90vh]"
           >
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-2xl font-bold text-white">
+            {/* Mobile Drag Handle Indicator */}
+            <div className="w-12 h-1.5 bg-slate-200 dark:bg-slate-700 rounded-full mx-auto mb-6 sm:hidden" />
+
+            <div className="flex items-center justify-between mb-6 sm:mb-8">
+              <h2 className="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white tracking-tight">
                 {initialData ? 'Update Record' : 'Log Transaction'}
               </h2>
               <button 
+                type="button"
                 onClick={onClose}
-                className="p-2 text-slate-400 hover:text-white bg-white/5 hover:bg-white/10 rounded-xl transition-all"
+                className="p-2 text-slate-400 hover:text-slate-900 dark:hover:text-white bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-full transition-all"
               >
                 <X size={20} />
               </button>
@@ -122,17 +127,17 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
 
             <form onSubmit={handleSubmit} className="space-y-6">
               {/* Type Switcher */}
-              <div className="flex p-1 bg-slate-950 rounded-2xl border border-slate-800/50">
+              <div className="flex p-1 bg-slate-100 dark:bg-slate-950 rounded-2xl border border-slate-200 dark:border-slate-800/50">
                 {(['expense', 'income'] as const).map((t) => (
                   <button
                     key={t}
                     type="button"
                     onClick={() => setFormData({ ...formData, type: t })}
                     className={cn(
-                      "flex-1 py-3 rounded-xl text-sm font-bold capitalize transition-all",
+                      "flex-1 py-2.5 sm:py-3 rounded-xl text-sm font-bold capitalize transition-all",
                       formData.type === t 
-                        ? "bg-slate-800 text-white shadow-lg" 
-                        : "text-slate-500 hover:text-slate-300"
+                        ? "bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm" 
+                        : "text-slate-500 hover:text-slate-900 dark:hover:text-slate-300"
                     )}
                   >
                     {t}
@@ -150,8 +155,8 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
                       step="0.01"
                       placeholder="0.00"
                       className={cn(
-                        "w-full bg-slate-950 border rounded-xl py-3 px-4 text-white focus:outline-none transition-all",
-                        errors.amount ? "border-rose-500 ring-4 ring-rose-500/10" : "border-slate-800 focus:border-emerald-500"
+                        "w-full bg-slate-50 dark:bg-slate-950 border rounded-xl py-3 px-4 text-slate-900 dark:text-white focus:outline-none transition-all",
+                        errors.amount ? "border-rose-500 ring-4 ring-rose-500/10" : "border-slate-200 dark:border-slate-800 focus:border-amber-500"
                       )}
                       value={formData.amount}
                       onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
@@ -172,8 +177,8 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
                     type="text" 
                     placeholder="e.g. Salary, Utilities, Subscriptions"
                     className={cn(
-                      "w-full bg-slate-950 border rounded-xl py-3 px-4 text-white focus:outline-none transition-all",
-                      errors.category ? "border-rose-500" : "border-slate-800 focus:border-emerald-500"
+                      "w-full bg-slate-50 dark:bg-slate-950 border rounded-xl py-3 px-4 text-slate-900 dark:text-white focus:outline-none transition-all",
+                      errors.category ? "border-rose-500" : "border-slate-200 dark:border-slate-800 focus:border-amber-500"
                     )}
                     value={formData.category}
                     onChange={(e) => setFormData({ ...formData, category: e.target.value })}
@@ -186,7 +191,8 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Date</label>
                   <input 
                     type="date" 
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-emerald-500 transition-all"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 transition-all appearance-none"
+                    style={{ colorScheme: 'inherit' }}
                     value={formData.date}
                     onChange={(e) => setFormData({ ...formData, date: e.target.value })}
                   />
@@ -197,25 +203,25 @@ const TransactionModal: React.FC<TransactionModalProps> = ({
                   <label className="text-xs font-bold text-slate-500 uppercase tracking-widest pl-1">Description (Opt)</label>
                   <textarea 
                     placeholder="Add a memo..."
-                    className="w-full bg-slate-950 border border-slate-800 rounded-xl py-3 px-4 text-white focus:outline-none focus:border-emerald-500 transition-all min-h-[100px] resize-none"
+                    className="w-full bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 rounded-xl py-3 px-4 text-slate-900 dark:text-white focus:outline-none focus:border-amber-500 transition-all min-h-[100px] resize-none"
                     value={formData.notes}
                     onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   />
                 </div>
               </div>
 
-              <div className="pt-4 flex gap-3 text-white">
+              <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row gap-3">
                 <button 
                   type="button" 
                   onClick={onClose}
-                  className="flex-1 py-4 px-6 rounded-2xl bg-white/5 hover:bg-white/10 font-bold transition-all"
+                  className="w-full sm:flex-1 py-3.5 sm:py-4 px-6 rounded-2xl bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 text-slate-900 dark:text-white font-bold transition-all text-sm sm:text-base order-2 sm:order-1"
                 >
                   Cancel
                 </button>
                 <button 
                   type="submit"
                   disabled={submitting}
-                  className="flex-2 flex items-center justify-center gap-2 py-4 px-6 rounded-2xl bg-emerald-500 hover:bg-emerald-600 font-bold shadow-lg shadow-emerald-500/20 active:scale-95 transition-all disabled:opacity-50"
+                  className="w-full sm:flex-2 flex items-center justify-center gap-2 py-3.5 sm:py-4 px-6 rounded-2xl bg-amber-500 hover:bg-amber-600 text-white font-bold shadow-lg shadow-amber-500/20 active:scale-95 transition-all disabled:opacity-50 text-sm sm:text-base order-1 sm:order-2"
                 >
                   {submitting ? 'Processing...' : (
                     <>
