@@ -9,12 +9,13 @@ This application acts as the backend service for a finance tracker. It provides 
 ## Tech Stack
 
 - **Framework:** FastAPI
-- **ORM:** SQLAlchemy (2.0 style, asynchronous paradigm ready but running synchronously)
+- **ORM:** SQLAlchemy (2.0 style, synchronous)
 - **Database:** SQLite
 - **Validation:** Pydantic v2
 - **Server:** Uvicorn
 - **Testing:** pytest
-- **Config:** python-dotenv
+- **Config:** pydantic-settings
+- **CORS:** Enabled for frontend integration
 
 ## Architecture
 

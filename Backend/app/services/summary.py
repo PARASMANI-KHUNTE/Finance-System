@@ -44,7 +44,8 @@ class SummaryService:
         monthly_totals.sort(key=lambda x: x.month)
         
         # Recent transactions (last 5 based on date)
-        # Note: In a huge DB, sorting in python is bad, but for full summary aggregation we typically need to do this anyway unless DB handles group by
+        # Note: Aggregation is done in Python for simplicity. For large datasets,
+        # consider moving this to database-level aggregation (GROUP BY queries).
         sorted_recent = sorted(transactions, key=lambda x: x.date, reverse=True)[:5]
         recent_txs = [TransactionRead.model_validate(t) for t in sorted_recent]
 

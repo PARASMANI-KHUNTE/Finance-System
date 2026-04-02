@@ -25,6 +25,7 @@ The Finance Tracking System is a full-stack application designed to track person
 | Validation | Pydantic | 2.6.4 |
 | Server | Uvicorn | 0.27.1 |
 | Testing | pytest | 8.1.1 |
+| CORS | Enabled | All origins (*) |
 
 ### Architecture
 
@@ -142,6 +143,7 @@ The system uses a header-based role system via `X-Role` header.
 5. **Float for Currency:** Precision issues possible with large amounts
 6. **No Caching:** Summary endpoint recalculates every request
 7. **No Rate Limiting:** Vulnerable to abuse
+8. **Python-side Aggregation:** Summary calculations done in-memory, not at DB level
 
 ### Running the Backend
 
@@ -316,6 +318,7 @@ const api = axios.create({
 4. **Modal Not Integrated:** Dashboard button doesn't open modal
 5. **No Optimistic Updates:** UI waits for API response
 6. **No Form Debouncing:** Search triggers immediately
+7. **TypeScript Warnings:** Some `any` types used for flexibility
 
 ### Running the Frontend
 

@@ -22,7 +22,7 @@ The overarching logic relies heavily on the `X-Role` being simulated. The UI is 
 Switch back to **Admin** to test data persistence.
 
 ### Step A: Add Income
-Go to the **Dashboard** and click **"Add Transaction"**. Fill in the following data:
+Go to the **Dashboard** and click **"Add Transaction"** (visible for Admin role). Fill in the following data:
 - **Type**: Income
 - **Amount**: `4500.00`
 - **Category**: `Base Salary`
