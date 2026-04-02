@@ -1,0 +1,31 @@
+# --- Python (Backend) ---
+Backend/venv/
+Backend/__pycache__/
+Backend/*.py[cod]
+Backend/*$py.class
+Backend/.env
+Backend/*.db
+Backend/*.sqlite3
+Backend/.pytest_cache/
+
+# --- Node.js (Frontend) ---
+Frontend/node_modules/
+Frontend/dist/
+Frontend/.env
+Frontend/.env.local
+Frontend/.env.development.local
+Frontend/.env.test.local
+Frontend/.env.production.local
+Frontend/npm-debug.log*
+Frontend/yarn-debug.log*
+Frontend/yarn-error.log*
+Frontend/.eslintcache
+
+# --- OS / IDE ---
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.bak
+*.tmp
