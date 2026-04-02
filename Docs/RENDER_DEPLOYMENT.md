@@ -57,9 +57,11 @@ For production with persistent data, use PostgreSQL instead.
 | **Region** | Choose closest to you |
 | **Branch** | `main` |
 | **Root Directory** | `Backend` |
-| **Runtime** | `Python 3` |
+| **Runtime** | `Python 3.11` |
 | **Build Command** | `pip install -r requirements.txt` |
 | **Start Command** | `uvicorn app.main:app --host 0.0.0.0 --port $PORT` |
+
+> ⚠️ **Important:** Use Python 3.11 or 3.12. Python 3.14 is too new and packages don't have pre-built wheels for it.
 
 ### Step 2: Environment Variables
 
@@ -70,6 +72,7 @@ Add these under **Environment**:
 | `PROJECT_NAME` | `Finance Tracking API` |
 | `API_V1_STR` | `/api/v1` |
 | `DATABASE_URL` | `sqlite:///./finance.db` |
+| `PYTHON_VERSION` | `3.11` |
 
 ### Step 3: Deploy
 
