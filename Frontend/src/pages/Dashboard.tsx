@@ -10,6 +10,7 @@ import {
   Plus
 } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import TransactionModal from '../components/TransactionModal';
@@ -30,6 +31,7 @@ interface SummaryData {
 
 const Dashboard: React.FC = () => {
   const { role } = useAuth();
+  const navigate = useNavigate();
   const [data, setData] = useState<SummaryData | null>(null);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -132,7 +134,10 @@ const Dashboard: React.FC = () => {
               </div>
               <h2 className="text-xl font-bold text-white">Recent Transactions</h2>
             </div>
-            <button className="text-sm text-emerald-400 hover:text-emerald-300 font-medium px-4 py-2 hover:bg-emerald-500/5 rounded-lg transition-all">
+            <button 
+              onClick={() => navigate('/history')}
+              className="text-sm text-emerald-400 hover:text-emerald-300 font-medium px-4 py-2 hover:bg-emerald-500/5 rounded-lg transition-all"
+            >
               View All
             </button>
           </div>
