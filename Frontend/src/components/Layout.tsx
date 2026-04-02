@@ -7,7 +7,6 @@ import {
   LogOut, 
   ShieldCheck,
   Menu,
-  X,
   Sun,
   Moon
 } from 'lucide-react';
