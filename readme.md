@@ -2,6 +2,12 @@
 
 A full-stack finance tracking application with FastAPI backend and React frontend.
 
+## 🚀 Live Demo
+
+- **Frontend**: [https://finance-system-u9sp.onrender.com/](https://finance-system-u9sp.onrender.com/)
+- **Backend API**: [https://finance-api-v3df.onrender.com/docs](https://finance-api-v3df.onrender.com/docs)
+
+
 ## Project Structure
 
 ```
