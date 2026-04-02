@@ -16,7 +16,6 @@ Finance System/
 │   │   ├── schemas/      # Pydantic schemas
 │   │   ├── services/     # Business logic
 │   │   └── utils/        # Helper functions
-│   ├── migrations/       # Database migration scripts
 │   ├── tests/            # pytest test suite
 │   └── requirements.txt
 ├── Frontend/             # React + Vite frontend
@@ -93,8 +92,7 @@ npm run dev
 ### Backend
 - FastAPI 0.110.0
 - SQLAlchemy 2.0.28
-- SQLite / PostgreSQL (dual support)
-- psycopg2-binary
+- SQLite
 - Pydantic v2
 - pytest
 
