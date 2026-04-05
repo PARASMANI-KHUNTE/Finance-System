@@ -76,9 +76,13 @@ Uses header-based authentication via `X-Role` header:
 ## Quick Start
 
 ### Backend
+> [!IMPORTANT]
+> This project requires **Python 3.12**. Later versions (e.g., Python 3.14) break compatibility with core dependencies like SQLAlchemy and Pydantic-Core.
+
 ```bash
 cd Backend
-python -m venv venv
+# Note: Ensure you are using Python 3.12 specifically
+python3.12 -m venv venv  # Or point explicitly to your 3.12 executable
 source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 uvicorn app.main:app --reload

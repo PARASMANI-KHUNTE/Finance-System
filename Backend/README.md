@@ -65,10 +65,11 @@ Throughout the development cycle, the following architectural decisions and assu
 ## How to Run
 
 1. Clone the project and navigate into the `Backend` directory.
-2. Ensure you have Python 3.10+ installed.
+2. Ensure you have **Python 3.12** installed. *(Note: Python 3.14 breaks compatibility with core dependencies like SQLAlchemy and Pydantic-Core).*
 3. Create a virtual environment and install requirements:
    ```shell
-   python -m venv venv
+   # Point explicitly to your Python 3.12 executable if necessary
+   python3.12 -m venv venv
    source venv/bin/activate  # Or `venv\Scripts\activate` on Windows
    pip install -r requirements.txt
    ```
